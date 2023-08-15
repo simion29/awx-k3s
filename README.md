@@ -49,14 +49,17 @@ Modify two passwords in base/kustomization.yaml. Note that the password under aw
 Prepare directories for Persistent Volumes defined in base/pv.yaml. These directories will be used to store your databases and project files. Note that the size of the PVs and PVCs are specified in some of the files in this repository, but since their backends are hostPath, its value is just like a label and there is no actual capacity limitation.
 
 sudo mkdir -p /data/postgres-13
+
 sudo mkdir -p /data/projects
+
 sudo chmod 755 /data/postgres-13
+
 sudo chown 1000:0 /data/projects
-Deploy AWX
 
 Deploy AWX, this takes few minutes to complete.
 
 kubectl apply -k base
+
 To monitor the progress of the deployment, check the logs of deployments/awx-operator-controller-manager:
 
 kubectl -n awx logs -f deployments/awx-operator-controller-manager
