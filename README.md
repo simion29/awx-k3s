@@ -14,6 +14,7 @@ curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644
 kubectl apply -k operator
 
 export AWX_HOST="awx.example.com"
+
 openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -out ./base/tls.crt -keyout ./base/tls.key -subj "/CN=${AWX_HOST}/O=${AWX_HOST}" -addext "subjectAltName = DNS:${AWX_HOST}"
 
 Modify hostname in base/awx.yaml.
